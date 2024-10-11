@@ -13,6 +13,7 @@ public class Menus {
                     (1) Add Deposit
                     (2) Make Payment
                     (3) Ledger...
+                    
                     (0) Exit
                     """);
             System.out.print("Your selection: ");
@@ -20,6 +21,47 @@ public class Menus {
 
             switch (mainMenuCommand) {
                 case 1:
+                    System.out.println("Feature in development..."); // DELETE WHEN DONE
+                    //addDeposit();
+                    break;
+                case 2:
+                    System.out.println("Feature in development..."); // DELETE WHEN DONE
+                    //makePayment();
+                    break;
+                case 3:
+                    ledgerMenu();
+                    break;
+                default:
+                    System.out.println("Invalid input, try again.");
+            }
+        } while (mainMenuCommand != 0);
+    }
+
+    public static void ledgerMenu() {
+        int ledgerMenuCommand;
+        do {
+            System.out.println("""
+                    ===== LEDGER MENU =====
+                    Display which transactions:
+                    (1) All Transactions
+                    (2) Previous Month
+                    (3) Year to Date
+                    (4) Previous Year
+                    
+                    === SEARCHES ===
+                    (5) Search by Vendor
+                    (6) Search by Date Range
+                    (7) Search by Description
+                    (8) Search by Amount (range)
+                    
+                    (0) Back to Main Menu
+                    """);
+            System.out.print("Your selection: ");
+            ledgerMenuCommand = commandInput.nextInt();
+
+            switch (ledgerMenuCommand) {
+                case 1:
+                    System.out.println("Feature in development..."); // DELETE WHEN DONE
                     //addDeposit();
                     break;
                 case 2:
@@ -31,9 +73,8 @@ public class Menus {
                 default:
                     System.out.println("Invalid input, try again.");
             }
-        } while (mainMenuCommand != 0);
+        } while (ledgerMenuCommand != 0);
     }
-
 }
 
 
