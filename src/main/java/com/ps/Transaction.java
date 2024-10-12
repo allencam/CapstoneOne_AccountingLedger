@@ -51,15 +51,9 @@ public class Transaction {
         this.amount = amount;
     }
 
-    // toString() - EDIT LATER
+    // toString()
     @Override
     public String toString() {
-        return "Transaction{" +
-                "date=" + date +
-                ", time=" + time +
-                ", description='" + description + '\'' +
-                ", vendor='" + vendor + '\'' +
-                ", amount=" + amount +
-                '}';
+        return String.format("\nDate: %s Time: %s | Description: %s, Vendor: %s, Amount: $%.2f",date,time,description,vendor,amount);
     }
 }

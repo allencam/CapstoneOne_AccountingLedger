@@ -61,14 +61,32 @@ public class Menus {
 
             switch (ledgerMenuCommand) {
                 case 1:
-                    System.out.println("Feature in development..."); // DELETE WHEN DONE
-                    //addDeposit();
+                    Main.getTransactions();
+                    System.out.println(Main.transactions);
                     break;
                 case 2:
-                    //makePayment();
+                    //Search.previousMonth();
                     break;
                 case 3:
-                    //ledgerMenu
+                    //Search.yearToDate();
+                    break;
+                case 4:
+                    //Search.previousYear();
+                    break;
+                case 5:
+                    //Search.byVendor();
+                    break;
+                case 6:
+                    //Search.byDateRange();
+                    break;
+                case 7:
+                    //Search.byDescription();
+                    break;
+                case 8:
+                    //Search.byAmount();
+                    break;
+                case 0:
+                    System.out.println("Returning to main menu...");
                     break;
                 default:
                     System.out.println("Invalid input, try again.");
@@ -76,5 +94,3 @@ public class Menus {
         } while (ledgerMenuCommand != 0);
     }
 }
-
-
