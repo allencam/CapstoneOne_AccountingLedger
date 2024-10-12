@@ -61,7 +61,7 @@ public class Menus {
 
             switch (ledgerMenuCommand) {
                 case 1:
-                    Main.getTransactions();
+                    ReaderWriter.getTransactions();
                     System.out.println(Main.transactions);
                     break;
                 case 2:
