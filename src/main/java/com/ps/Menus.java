@@ -83,7 +83,7 @@ public class Menus {
                     //Search.byDescription();
                     break;
                 case 8:
-                    //Search.byAmount();
+                    Search.byAmount();
                     break;
                 case 0:
                     System.out.println("Returning to main menu...");
