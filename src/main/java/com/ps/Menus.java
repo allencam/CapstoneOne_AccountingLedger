@@ -40,6 +40,7 @@ public class Menus {
     public static void ledgerMenu() {
         int ledgerMenuCommand;
         do {
+            ReaderWriter.getTransactions();
             System.out.println("""
                     ===== LEDGER MENU =====
                     Display which transactions:
@@ -80,7 +81,7 @@ public class Menus {
                     //Search.byDateRange();
                     break;
                 case 7:
-                    //Search.byDescription();
+                    Search.byDescription();
                     break;
                 case 8:
                     Search.byAmount();
