@@ -39,10 +39,10 @@ public class Search {
             float currentTransactionAmount = currentTransaction.getAmount();
             if(min == 0) {
                 if(currentTransactionAmount < max) {
-                    System.out.println(Main.transactions.get(i));
+                    System.out.print(Main.transactions.get(i));
                 }
             } else if(currentTransactionAmount > min && currentTransactionAmount < max) {
-                System.out.println(Main.transactions.get(i));
+                System.out.print(Main.transactions.get(i));
             }
         }
     }
@@ -52,24 +52,35 @@ public class Search {
             float currentTransactionAmount = currentTransaction.getAmount();
             if(max == 0){
                 if(currentTransactionAmount > min) {
-                    System.out.println(Main.transactions.get(i));
+                    System.out.print(Main.transactions.get(i));
                 }
             } else if(currentTransactionAmount > min && currentTransactionAmount < max) {
-                System.out.println(Main.transactions.get(i));
+                System.out.print(Main.transactions.get(i));
             }
         }
     }
 //    ==================== By Description ====================    \\
     public static void byDescription() {
-
         System.out.print("Enter the description you want to search for (will accept partial matches): ");
         String descriptionToSearch = inputScan.nextLine();
 
         for(int i = 0; i < Main.transactions.size(); i++){
             Transaction currentTransaction = Main.transactions.get(i);
 
-            if(currentTransaction.getDescription().contains(descriptionToSearch)) {
-                System.out.println(Main.transactions.get(i));
+            if(currentTransaction.getDescription().toLowerCase().contains(descriptionToSearch.toLowerCase())) {
+                System.out.print(Main.transactions.get(i));
+            }
+        }
+    }
+    public static void byVendor() {
+        System.out.print("Enter the vendor you want to search for (will accept partial matches): ");
+        String vendorToSearch = inputScan.nextLine();
+
+        for(int i = 0; i < Main.transactions.size(); i++){
+            Transaction currentTransaction = Main.transactions.get(i);
+
+            if(currentTransaction.getVendor().toLowerCase().contains(vendorToSearch.toLowerCase())) {
+                System.out.print(Main.transactions.get(i));
             }
         }
     }

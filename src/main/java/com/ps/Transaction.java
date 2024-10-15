@@ -54,6 +54,6 @@ public class Transaction {
     // toString()
     @Override
     public String toString() {
-        return String.format("\nDate: %s Time: %s | Description: %s, Vendor: %s, Amount: $%.2f",date,time,description,vendor,amount);
+        return String.format("Date: %s Time: %s | Description: %s, Vendor: %s, Amount: $%.2f\n",date,time,description,vendor,amount);
     }
 }

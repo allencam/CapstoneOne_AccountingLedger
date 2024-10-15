@@ -10,8 +10,8 @@ public class Menus {
         do {
             System.out.println("""
                     Please select among the following:
-                    (1) Add Deposit
-                    (2) Make Payment
+                    (1) Add Deposit (Credit)
+                    (2) Make Payment (Debit)
                     (3) Ledger...
                     
                     (0) Exit
@@ -75,7 +75,7 @@ public class Menus {
                     //Search.previousYear();
                     break;
                 case 5:
-                    //Search.byVendor();
+                    Search.byVendor();
                     break;
                 case 6:
                     //Search.byDateRange();
