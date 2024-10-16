@@ -24,8 +24,7 @@ public class Menus {
                     NewTransaction.addDeposit();
                     break;
                 case 2:
-                    System.out.println("Feature in development..."); // DELETE WHEN DONE
-                    //makePayment();
+                    NewTransaction.makePayment();
                     break;
                 case 3:
                     ledgerMenu();
