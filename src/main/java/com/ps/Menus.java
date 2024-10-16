@@ -68,10 +68,10 @@ public class Menus {
                     Search.previousMonth();
                     break;
                 case 3:
-                    //Search.yearToDate();
+                    Search.yearToDate();
                     break;
                 case 4:
-                    //Search.previousYear();
+                    Search.previousYear();
                     break;
                 case 5:
                     Search.byVendor();
