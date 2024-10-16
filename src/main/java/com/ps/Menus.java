@@ -7,6 +7,7 @@ public class Menus {
 
     public static void mainMenu() {
         int mainMenuCommand;
+        ReaderWriter.getTransactions();
         do {
             System.out.println("""
                     Please select among the following:
@@ -38,6 +39,7 @@ public class Menus {
     public static void ledgerMenu() {
         int ledgerMenuCommand;
         do {
+            ReaderWriter.getTransactions();
             System.out.println("""
                     ===== LEDGER MENU =====
                     Display which transactions:
@@ -63,7 +65,7 @@ public class Menus {
                     System.out.println(Main.transactions);
                     break;
                 case 2:
-                    //Search.previousMonth();
+                    Search.previousMonth();
                     break;
                 case 3:
                     //Search.yearToDate();

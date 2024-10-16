@@ -1,5 +1,6 @@
 package com.ps;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Search {
@@ -80,7 +81,7 @@ public class Search {
     public static void byVendor() {
         System.out.print("Enter the vendor you want to search for (will accept partial matches): ");
         String vendorToSearch = inputScan.nextLine();
-        float totalByVendor = 0f;
+        float totalByVendor = 0;
 
         for(int i = 0; i < Main.transactions.size(); i++){
             Transaction currentTransaction = Main.transactions.get(i);
@@ -91,6 +92,27 @@ public class Search {
             }
         }
         System.out.printf("Net profit/loss from vendor(s) shown: %.2f\n",totalByVendor);
+        Menus.returnToMenus();
+    }
+//    ==================== Previous Month ====================    \\
+    public static void previousMonth() {
+        // Get the int value of last month
+        int thisMonth = LocalDate.now().getMonthValue();
+        int previousMonth = thisMonth - 1;
+        int thisYear = LocalDate.now().getYear();
+        float monthTotal = 0;
+
+        for(int i = 0; i < Main.transactions.size(); i++) {
+            Transaction currentTransaction = Main.transactions.get(i);
+            int currentTransactionMonth = currentTransaction.getDate().getMonthValue();
+            int currentTransactionYear = currentTransaction.getDate().getYear();
+
+            if(currentTransactionMonth == previousMonth && currentTransactionYear == thisYear) {
+                System.out.println(Main.transactions.get(i));
+                monthTotal += currentTransaction.getAmount();
+            }
+        }
+        System.out.printf("Net profit/loss for the month shown: %.2f\n",monthTotal);
         Menus.returnToMenus();
     }
 }
