@@ -30,6 +30,8 @@ public class NewTransaction {
         Main.transactions.add(transaction);
         // Write the transaction
         ReaderWriter.writeTransaction(transaction);
+
+        Menus.returnToMenus();
     }
 
     public static void makePayment() {
@@ -53,5 +55,7 @@ public class NewTransaction {
         Main.transactions.add(transaction);
         // Write the transaction
         ReaderWriter.writeTransaction(transaction);
+
+        Menus.returnToMenus();
     }
 }

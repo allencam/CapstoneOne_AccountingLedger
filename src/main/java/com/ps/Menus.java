@@ -91,4 +91,25 @@ public class Menus {
             }
         } while (ledgerMenuCommand != 0);
     }
+
+    public static void returnToMenus() { // Additional mini-menu to give users time to look over transactions before
+                                         // being prompted to make another selection
+        int returnCommand;
+        do {
+            System.out.println("(1) Return to main menu | (2) To ledger options");
+            System.out.print("Your selection: ");
+            returnCommand = commandInput.nextInt();
+
+            switch (returnCommand) {
+                case 1:
+                    mainMenu();
+                    break;
+                case 2:
+                    ledgerMenu();
+                    break;
+                default:
+                    System.out.println("Invalid input, try again.");
+            }
+        } while (returnCommand != 0);
+    }
 }

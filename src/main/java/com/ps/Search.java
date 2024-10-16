@@ -30,6 +30,7 @@ public class Search {
         } else {
             byAmountDebit(max,min); // flipped since amounts will be negative
         }
+        Menus.returnToMenus();
     }
     public static void byAmountDebit(int min, int max) {
         min = -min;
@@ -45,6 +46,7 @@ public class Search {
                 System.out.print(Main.transactions.get(i));
             }
         }
+        Menus.returnToMenus();
     }
     public static void byAmountCredit(int min, int max) {
         for(int i = 0; i < Main.transactions.size(); i++) {
@@ -58,6 +60,7 @@ public class Search {
                 System.out.print(Main.transactions.get(i));
             }
         }
+        Menus.returnToMenus();
     }
 //    ==================== By Description ====================    \\
     public static void byDescription() {
@@ -71,6 +74,7 @@ public class Search {
                 System.out.print(Main.transactions.get(i));
             }
         }
+        Menus.returnToMenus();
     }
 //    ==================== By Vendor ====================    \\
     public static void byVendor() {
@@ -87,6 +91,6 @@ public class Search {
             }
         }
         System.out.printf("Net profit/loss from vendor(s) shown: %.2f\n",totalByVendor);
-
+        Menus.returnToMenus();
     }
 }
