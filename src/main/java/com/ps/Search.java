@@ -72,16 +72,21 @@ public class Search {
             }
         }
     }
+//    ==================== By Vendor ====================    \\
     public static void byVendor() {
         System.out.print("Enter the vendor you want to search for (will accept partial matches): ");
         String vendorToSearch = inputScan.nextLine();
+        float totalByVendor = 0f;
 
         for(int i = 0; i < Main.transactions.size(); i++){
             Transaction currentTransaction = Main.transactions.get(i);
 
             if(currentTransaction.getVendor().toLowerCase().contains(vendorToSearch.toLowerCase())) {
                 System.out.print(Main.transactions.get(i));
+                totalByVendor += currentTransaction.getAmount();
             }
         }
+        System.out.printf("Net profit/loss from vendor(s) shown: %.2f\n",totalByVendor);
+
     }
 }

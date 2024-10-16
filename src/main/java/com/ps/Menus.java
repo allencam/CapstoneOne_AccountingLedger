@@ -21,8 +21,7 @@ public class Menus {
 
             switch (mainMenuCommand) {
                 case 1:
-                    System.out.println("Feature in development..."); // DELETE WHEN DONE
-                    //addDeposit();
+                    NewTransaction.addDeposit();
                     break;
                 case 2:
                     System.out.println("Feature in development..."); // DELETE WHEN DONE
@@ -40,7 +39,6 @@ public class Menus {
     public static void ledgerMenu() {
         int ledgerMenuCommand;
         do {
-            ReaderWriter.getTransactions();
             System.out.println("""
                     ===== LEDGER MENU =====
                     Display which transactions:
