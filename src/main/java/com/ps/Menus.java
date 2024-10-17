@@ -61,8 +61,17 @@ public class Menus {
 
             switch (ledgerMenuCommand) {
                 case 1:
-                    ReaderWriter.getTransactions();
-                    System.out.println(Main.transactions);
+                    System.out.println("(1) All transactions | (2) All Credits | (3) All Debits");
+                    System.out.print("Your selection: ");
+                    byte selection = commandInput.nextByte();
+
+                    if(selection == 2) {
+                        Search.allCredits();
+                    } else if(selection == 3) {
+                        Search.allDebits();
+                    } else {
+                        System.out.println(Main.transactions);
+                    }
                     break;
                 case 2:
                     Search.previousMonth();
@@ -94,8 +103,7 @@ public class Menus {
         } while (ledgerMenuCommand != 0);
     }
 
-    public static void returnToMenus() { // Additional mini-menu to give users time to look over transactions before
-                                         // being prompted to make another selection
+    public static void returnToMenus() { // Additional mini-menu to give users time to look over transactions before being prompted to make another selection
         int returnCommand;
         do {
             System.out.println("(1) Return to main menu | (2) To ledger options");

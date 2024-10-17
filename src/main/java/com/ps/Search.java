@@ -63,6 +63,23 @@ public class Search {
         }
         Menus.returnToMenus();
     }
+//    ==================== All Credits/Debitts ====================    \\
+    public static void allCredits() {
+        for(int i = 0; i < Main.transactions.size(); i++) {
+            Transaction currentTransaction = Main.transactions.get(i);
+            if(currentTransaction.getAmount() > 0) {
+                System.out.print(Main.transactions.get(i));
+            }
+        }
+    }
+    public static void allDebits() {
+        for(int i = 0; i < Main.transactions.size(); i++) {
+            Transaction currentTransaction = Main.transactions.get(i);
+            if(currentTransaction.getAmount() < 0) {
+                System.out.print(Main.transactions.get(i));
+            }
+        }
+    }
 //    ==================== By Description ====================    \\
     public static void byDescription() {
         System.out.print("Enter the description you want to search for (will accept partial matches): ");
@@ -151,5 +168,4 @@ public class Search {
         System.out.printf("Net profit/loss for %s: %.2f\n",previousYear, yearTotal);
         Menus.returnToMenus();
     }
-
 }
