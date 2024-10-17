@@ -86,7 +86,7 @@ public class Menus {
                     Search.byVendor();
                     break;
                 case 6:
-                    //Search.byDateRange();
+                    Search.byDateRange();
                     break;
                 case 7:
                     Search.byDescription();

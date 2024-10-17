@@ -63,7 +63,7 @@ public class Search {
         }
         Menus.returnToMenus();
     }
-//    ==================== All Credits/Debitts ====================    \\
+//    ==================== All Credits/Debits ====================    \\
     public static void allCredits() {
         for(int i = 0; i < Main.transactions.size(); i++) {
             Transaction currentTransaction = Main.transactions.get(i);
@@ -168,4 +168,46 @@ public class Search {
         System.out.printf("Net profit/loss for %s: %.2f\n",previousYear, yearTotal);
         Menus.returnToMenus();
     }
+//    ==================== By Date Range ====================    \\
+    public static void byDateRange() {
+        // User input
+        System.out.print("Enter start date (yyyy-MM-dd, press enter for no start date): ");
+        String userStartDate = inputScan.nextLine();
+        System.out.print("Enter end date (yyyy-MM-dd, press enter for no end date): ");
+        String userEndDate = inputScan.nextLine();
+
+        if(userStartDate.isEmpty() && userEndDate.isEmpty()) {
+            System.out.println(Main.transactions);
+        } else if(!userStartDate.isEmpty() && !userEndDate.isEmpty()) {
+            LocalDate startDate = LocalDate.parse(userStartDate);
+            LocalDate endDate = LocalDate.parse(userEndDate);
+            for(int i = 0; i < Main.transactions.size(); i++) {
+                Transaction currentTransaction = Main.transactions.get(i);
+                LocalDate currentTransactionDate = currentTransaction.getDate();
+                if(currentTransactionDate.isAfter(startDate) && currentTransactionDate.isBefore(endDate))  {
+                    System.out.print(Main.transactions.get(i));
+                }
+            }
+        } else if(!userStartDate.isEmpty()) {
+            LocalDate startDate = LocalDate.parse(userStartDate);
+            for (int i = 0; i < Main.transactions.size(); i++) {
+                Transaction currentTransaction = Main.transactions.get(i);
+                LocalDate currentTransactionDate = currentTransaction.getDate();
+                if (currentTransactionDate.isAfter(startDate)) {
+                    System.out.print(Main.transactions.get(i));
+                }
+            }
+        }else if(!userEndDate.isEmpty()) {
+            LocalDate endDate = LocalDate.parse(userEndDate);
+            for (int i = 0; i < Main.transactions.size(); i++) {
+                Transaction currentTransaction = Main.transactions.get(i);
+                LocalDate currentTransactionDate = currentTransaction.getDate();
+                if (currentTransactionDate.isBefore(endDate)) {
+                    System.out.print(Main.transactions.get(i));
+                }
+            }
+        }
+        Menus.returnToMenus();
+    }
 }
+
