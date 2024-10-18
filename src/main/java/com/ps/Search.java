@@ -7,7 +7,6 @@ public class Search {
     static Scanner inputScan = new Scanner(System.in);
 //    ==================== By Amount ====================    \\
     public static void byAmount() {
-        ReaderWriter.getTransactions();
         int min = 0;
         int max = 0;
         boolean validInput = false;
@@ -115,7 +114,12 @@ public class Search {
     public static void previousMonth() {
         // Get the int value of last month
         int thisMonth = LocalDate.now().getMonthValue();
-        int previousMonth = thisMonth - 1;
+        int previousMonth;
+        if(thisMonth == 1) {
+            previousMonth = 12;
+        } else {
+            previousMonth = thisMonth - 1;
+        }
         int thisYear = LocalDate.now().getYear();
         float monthTotal = 0;
 
@@ -125,7 +129,7 @@ public class Search {
             int currentTransactionYear = currentTransaction.getDate().getYear();
 
             if(currentTransactionMonth == previousMonth && currentTransactionYear == thisYear) {
-                System.out.println(Main.transactions.get(i));
+                System.out.print(Main.transactions.get(i));
                 monthTotal += currentTransaction.getAmount();
             }
         }
@@ -142,7 +146,7 @@ public class Search {
             int currentTransactionYear = currentTransaction.getDate().getYear();
 
             if(currentTransactionYear == thisYear) {
-                System.out.println(Main.transactions.get(i));
+                System.out.print(Main.transactions.get(i));
                 yearTotal += currentTransaction.getAmount();
             }
         }
@@ -150,7 +154,7 @@ public class Search {
         Menus.returnToMenus();
     }
 //    ==================== Month To Date ====================    \\
-public static void monthToDate() {
+    public static void monthToDate() {
     int thisMonth = LocalDate.now().getMonthValue();
     int thisYear = LocalDate.now().getYear();
 
@@ -162,7 +166,7 @@ public static void monthToDate() {
         int currentTransactionYear = currentTransaction.getDate().getYear();
 
         if(currentTransactionMonth == thisMonth && currentTransactionYear == thisYear ) {
-            System.out.println(Main.transactions.get(i));
+            System.out.print(Main.transactions.get(i));
             monthTotal += currentTransaction.getAmount();
         }
     }
@@ -181,7 +185,7 @@ public static void monthToDate() {
             int currentTransactionYear = currentTransaction.getDate().getYear();
 
             if(currentTransactionYear == previousYear) {
-                System.out.println(Main.transactions.get(i));
+                System.out.print(Main.transactions.get(i));
                 yearTotal += currentTransaction.getAmount();
             }
         }
@@ -196,9 +200,9 @@ public static void monthToDate() {
         System.out.print("Enter end date (yyyy-MM-dd, press enter for no end date): ");
         String userEndDate = inputScan.nextLine();
 
-        if(userStartDate.isEmpty() && userEndDate.isEmpty()) {
+        if(userStartDate.isBlank() && userEndDate.isBlank()) {
             System.out.println(Main.transactions);
-        } else if(!userStartDate.isEmpty() && !userEndDate.isEmpty()) {
+        } else if(!userStartDate.isBlank() && !userEndDate.isBlank()) {
             LocalDate startDate = LocalDate.parse(userStartDate);
             LocalDate endDate = LocalDate.parse(userEndDate);
             for(int i = 0; i < Main.transactions.size(); i++) {
@@ -208,7 +212,7 @@ public static void monthToDate() {
                     System.out.print(Main.transactions.get(i));
                 }
             }
-        } else if(!userStartDate.isEmpty()) {
+        } else if(!userStartDate.isBlank()) {
             LocalDate startDate = LocalDate.parse(userStartDate);
             for (int i = 0; i < Main.transactions.size(); i++) {
                 Transaction currentTransaction = Main.transactions.get(i);
@@ -217,7 +221,7 @@ public static void monthToDate() {
                     System.out.print(Main.transactions.get(i));
                 }
             }
-        }else if(!userEndDate.isEmpty()) {
+        }else if(!userEndDate.isBlank()) {
             LocalDate endDate = LocalDate.parse(userEndDate);
             for (int i = 0; i < Main.transactions.size(); i++) {
                 Transaction currentTransaction = Main.transactions.get(i);

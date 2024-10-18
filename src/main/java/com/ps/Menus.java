@@ -7,7 +7,6 @@ public class Menus {
 
     public static void mainMenu() {
         int mainMenuCommand;
-        ReaderWriter.getTransactions();
         do {
             System.out.println("""
                     Please select among the following:
@@ -39,7 +38,6 @@ public class Menus {
     public static void ledgerMenu() {
         int ledgerMenuCommand;
         do {
-            ReaderWriter.getTransactions();
             System.out.println("""
                     ===== LEDGER MENU =====
                     Display which transactions:

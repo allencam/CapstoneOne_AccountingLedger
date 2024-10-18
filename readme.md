@@ -28,6 +28,84 @@ credits/debits and reading from a .csv file to display data based on specific se
 | **Year to Date**          | Displays all credit and debit transactions for the current year so far                                                                                                                                                       |
 | **Previous Year**         | Displays all credit and debit transactions for the previous year (based on the current date)                                                                                                                                 |
 
+## Examples
+
+---
+
+Click on any of the functions below to see an image of how it works.
+
+<details>
+    <summary>Add Deposit</summary>
+
+![Deposit Example](images/DepositExample.png)
+</details>
+
+<details>
+    <summary>Make Payment</summary>
+
+![Payment Example](images/PaymentExample.png)
+</details>
+
+<details>
+    <summary>All Transactions</summary>
+
+![All Transactions Example](images/AllTransactionsExample.png)
+</details>
+
+<details>
+    <summary>All Debits</summary>
+
+![All Debits Example](images/AllDebitsExample.png)
+</details>
+
+<details>
+    <summary>All Credits</summary>
+
+![All Credits Example](images/AllCreditsExample.png)
+</details>
+
+<details>
+    <summary>Search by Amount</summary>
+
+![Search Amount Example](images/SearchAmountExample.png)
+</details>
+
+<details>
+    <summary>Search by Description</summary>
+
+![Search Description Example](images/SearchDescriptionExample.png)
+</details>
+
+<details>
+    <summary>Search by Vendor</summary>
+
+![Search Vendor Example](images/SearchVendorExample.png)
+</details>
+
+<details>
+    <summary>Previous Month</summary>
+
+![Previous Month Example](images/PreviousMonthExample.png)
+</details>
+
+<details>
+    <summary>Month to Date</summary>
+
+![Month To Date Example](images/MonthToDateExample.png)
+</details>
+
+<details>
+    <summary>Year to Date</summary>
+
+![Year To Date Example](images/YearToDateExample.png)
+</details>
+
+<details>
+    <summary>Previous Year</summary>
+
+![Previous Year Example](images/PreviousYearExample.png)
+</details>
+
 ## Notable Mention
 
 ---
@@ -38,7 +116,9 @@ if(creditDebit == 1){
             byAmountDebit(max,min); 
         }
 ```
- These lines of code simplified the process of dealing with the idea of min/max when it comes to negative values.
+ These lines of code simplified the process of dealing with the idea of min/max when it comes to negative values. For 
+searching by amounts for only debits, max is passed as min as a parameter in my byAmountDebit() method (and vice versa for min),
+allowing the same logic to be used (amount < max, amount > min)
 ## Notes
 
 ---
