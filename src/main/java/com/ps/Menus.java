@@ -46,13 +46,14 @@ public class Menus {
                     (1) All Transactions
                     (2) Previous Month
                     (3) Year to Date
-                    (4) Previous Year
+                    (4) Month to Date
+                    (5) Previous Year
                     
                     === SEARCHES ===
-                    (5) Search by Vendor
-                    (6) Search by Date Range
-                    (7) Search by Description
-                    (8) Search by Amount (range)
+                    (6) Search by Vendor
+                    (7) Search by Date Range
+                    (8) Search by Description
+                    (9) Search by Amount (range)
                     
                     (0) Back to Main Menu
                     """);
@@ -80,18 +81,20 @@ public class Menus {
                     Search.yearToDate();
                     break;
                 case 4:
+                    Search.monthToDate();
+                case 5:
                     Search.previousYear();
                     break;
-                case 5:
+                case 6:
                     Search.byVendor();
                     break;
-                case 6:
+                case 7:
                     Search.byDateRange();
                     break;
-                case 7:
+                case 8:
                     Search.byDescription();
                     break;
-                case 8:
+                case 9:
                     Search.byAmount();
                     break;
                 case 0:

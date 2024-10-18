@@ -132,9 +132,8 @@ public class Search {
         System.out.printf("Net profit/loss for the month shown: %.2f\n",monthTotal);
         Menus.returnToMenus();
     }
-//    ==================== Year To Date ====================    \\
+//    ==================== Year to Date ====================    \\
     public static void yearToDate() {
-        // Get the int value of last month
         int thisYear = LocalDate.now().getYear();
         float yearTotal = 0;
 
@@ -150,6 +149,27 @@ public class Search {
         System.out.printf("Net profit/loss YTD: %.2f\n",yearTotal);
         Menus.returnToMenus();
     }
+//    ==================== Month To Date ====================    \\
+public static void monthToDate() {
+    int thisMonth = LocalDate.now().getMonthValue();
+    int thisYear = LocalDate.now().getYear();
+
+    float monthTotal = 0;
+
+    for(int i = 0; i < Main.transactions.size(); i++) {
+        Transaction currentTransaction = Main.transactions.get(i);
+        int currentTransactionMonth = currentTransaction.getDate().getMonthValue();
+        int currentTransactionYear = currentTransaction.getDate().getYear();
+
+        if(currentTransactionMonth == thisMonth && currentTransactionYear == thisYear ) {
+            System.out.println(Main.transactions.get(i));
+            monthTotal += currentTransaction.getAmount();
+        }
+    }
+    System.out.printf("Net profit/loss YTD: %.2f\n", monthTotal);
+    Menus.returnToMenus();
+}
+//    ==================== Previous Year ====================    \\
     public static void previousYear() {
         // Get the int value of last month
         int thisYear = LocalDate.now().getYear();
