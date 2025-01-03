@@ -1,6 +1,7 @@
 package com.ps;
 
 import com.ps.data.TransactionDaoImpl;
+import com.ps.enums.LedgerMenuOption;
 import com.ps.enums.MainMenuOption;
 import com.ps.models.Transaction;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -8,7 +9,10 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Scanner;
+
+import static com.ps.enums.LedgerMenuOption.LIST_ALL;
 
 public class UserInterface {
 
@@ -98,25 +102,60 @@ public class UserInterface {
     private static void ledgerMenu() {
         int ledgerMenuCommand;
         do {
-            System.out.println("""
-                    ===== LEDGER MENU =====
-                    Display which transactions:
-                    (1) All Transactions
-                    (2) Previous Month
-                    (3) Year to Date
-                    (4) Month to Date
-                    (5) Previous Year
-                    
-                    === SEARCHES ===
-                    (6) Search by Vendor
-                    (7) Search by Date Range
-                    (8) Search by Description
-                    (9) Search by Amount (range)
-                    
-                    (0) Back to Main Menu
-                    """);
-            System.out.print("Your selection: ");
+            System.out.println("Please select among the following menu options: ");
+            for (LedgerMenuOption option : LedgerMenuOption.values()) {
+                System.out.printf("(%d) %s%n", option.getCode(), option.getDescription());
+            }
+            System.out.println("Your selection: ");
             ledgerMenuCommand = commandInput.nextInt();
+
+            LedgerMenuOption selection = LedgerMenuOption.fromCode(ledgerMenuCommand);
+
+            if (selection == null) {
+                System.out.println("Invalid input, try again.");
+                continue;
+            }
+            ledgerMenuCommand = commandInput.nextInt();
+
+            switch (selection) {
+                case LIST_ALL:
+                    handleGetAll();
+                    break;
+                case LIST_CREDITS:
+                    handleGetCredits();
+                    break;
+                case LIST_DEBITS:
+                    handleGetDebits();
+            }
         } while (ledgerMenuCommand != 0);
+    }
+
+    private static void handleGetDebits() {
+        List<Transaction> transactions = dao.getCreditsOrDebits(false);
+        printFormattedTable(transactions);
+    }
+
+    private static void handleGetCredits() {
+
+    }
+
+    private static void handleGetAll() {
+
+    }
+    private static void printFormattedTable(List<Transaction> transactions) {
+        System.out.print("""
+                 ID    Date          Time       Description                   Vendor             Amount
+                ----- ------------- ---------- ----------------------------- ------------------ ----------
+                """);
+
+        for (Transaction transaction : transactions) {
+            System.out.printf("%-6d %-13s %-10s %-29s %-18s $%-9.2f%n",
+                    transaction.getTransactionId(),
+                    transaction.getDate(),
+                    transaction.getTime(),
+                    transaction.getDescription(),
+                    transaction.getVendor(),
+                    transaction.getAmount());
+        }
     }
 }

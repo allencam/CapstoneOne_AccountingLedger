@@ -1,11 +1,11 @@
 package com.ps.data;
 
-import com.mysql.cj.xdevapi.PreparableStatement;
 import com.ps.models.Search;
 import com.ps.models.Transaction;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionDaoImpl implements TransactionDaoInt {
@@ -39,6 +39,34 @@ public class TransactionDaoImpl implements TransactionDaoInt {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public List<Transaction> getCreditsOrDebits(boolean positive) {
+        List<Transaction> transactions = new ArrayList<>();
+        String query = "SELECT * FROM transactions " +
+                       "WHERE amount ";
+        if(positive) {
+            query += "> 0";
+        } else {
+            query += "< 0";
+        }
+
+        try(
+                Connection connection = dataSource.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
+        ) {
+
+            while(resultSet.next()) {
+                Transaction transaction = mapTransaction(resultSet);
+                transactions.add(transaction);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return transactions;
     }
 
     @Override
