@@ -81,7 +81,18 @@ public class UserInterface {
     }
 
     private static void handleMakePayment() {
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now().withNano(0);
+        System.out.printf("Current date and time will be recorded: %s | %s\n", date, time);
 
+        System.out.println("Enter a description: ");
+        String description = dataInput.nextLine();
+        System.out.println("Enter a vendor: ");
+        String vendor = dataInput.nextLine();
+        System.out.println("Enter an amount: ");
+        double amount = -Math.abs(dataInput.nextDouble());
+
+        dao.create(new Transaction(date,time,description,vendor,amount));
     }
 
     private static void ledgerMenu() {
