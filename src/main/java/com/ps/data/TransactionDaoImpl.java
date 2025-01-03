@@ -1,6 +1,7 @@
 package com.ps.data;
 
 import com.mysql.cj.xdevapi.PreparableStatement;
+import com.ps.models.Search;
 import com.ps.models.Transaction;
 
 import javax.sql.DataSource;
@@ -74,6 +75,11 @@ public class TransactionDaoImpl implements TransactionDaoInt {
     @Override
     public void delete(int id) {
 
+    }
+
+    @Override
+    public List<Transaction> customSearch(Search search) {
+        return List.of();
     }
 
     protected Transaction mapTransaction(ResultSet resultSet) throws SQLException

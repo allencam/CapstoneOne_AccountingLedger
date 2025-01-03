@@ -68,7 +68,7 @@ public class UserInterface {
     private static void handleAddDeposit() {
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now().withNano(0);
-        System.out.printf("Current date and time: %s | %s\n", date, time);
+        System.out.printf("Current date and time will be recorded: %s | %s\n", date, time);
 
         System.out.println("Enter a description: ");
         String description = dataInput.nextLine();
