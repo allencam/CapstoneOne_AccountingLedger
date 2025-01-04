@@ -18,7 +18,24 @@ public class TransactionDaoImpl implements TransactionDaoInt {
 
     @Override
     public List<Transaction> getAll() {
-        return List.of();
+        List<Transaction> transactions = new ArrayList<>();
+        String query = "SELECT * FROM transactions";
+
+        try (
+                Connection connection = dataSource.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
+        ) {
+
+            while (resultSet.next()) {
+                Transaction transaction = mapTransaction(resultSet);
+                transactions.add(transaction);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return transactions;
     }
 
     @Override

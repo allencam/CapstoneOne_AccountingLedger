@@ -136,12 +136,15 @@ public class UserInterface {
     }
 
     private static void handleGetCredits() {
-
+        List<Transaction> transactions = dao.getCreditsOrDebits(true);
+        printFormattedTable(transactions);
     }
 
     private static void handleGetAll() {
-
+        List<Transaction> transactions = dao.getAll();
+        printFormattedTable(transactions);
     }
+
     private static void printFormattedTable(List<Transaction> transactions) {
         System.out.print("""
                  ID    Date          Time       Description                   Vendor             Amount
