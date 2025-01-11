@@ -43,7 +43,7 @@ public class UserInterface {
             for (MainMenuOption option : MainMenuOption.values()) {
                 System.out.printf("(%d) %s%n", option.getCode(), option.getDescription());
             }
-            System.out.println("Your selection: ");
+            System.out.print("Your selection: ");
             mainMenuCommand = commandInput.nextInt();
 
             MainMenuOption selection = MainMenuOption.fromCode(mainMenuCommand);
@@ -108,7 +108,7 @@ public class UserInterface {
             for (LedgerMenuOption option : LedgerMenuOption.values()) {
                 System.out.printf("(%d) %s%n", option.getCode(), option.getDescription());
             }
-            System.out.println("Your selection: ");
+            System.out.print("Your selection: ");
             ledgerMenuCommand = commandInput.nextInt();
 
             LedgerMenuOption selection = LedgerMenuOption.fromCode(ledgerMenuCommand);
@@ -129,6 +129,8 @@ public class UserInterface {
                 case LIST_DEBITS:
                     handleGetDebits();
                     break;
+                case SEARCH_BY_ID:
+                    handleSearchById();
             }
         } while (ledgerMenuCommand != 0);
     }
@@ -148,6 +150,14 @@ public class UserInterface {
         printFormattedTable(transactions);
     }
 
+    private static void handleSearchById() {
+        System.out.print("Enter a transaction ID: ");
+        int id = dataInput.nextInt();
+        Transaction transaction = dao.getById(id);
+
+        printFormattedTable(transaction);
+    }
+
     private static void printFormattedTable(List<Transaction> transactions) {
         System.out.print("""
                  ID    Date          Time       Description                   Vendor             Amount
@@ -163,5 +173,20 @@ public class UserInterface {
                     transaction.getVendor(),
                     transaction.getAmount());
         }
+    }
+
+    private static void printFormattedTable(Transaction transaction) {
+        System.out.print("""
+                 ID    Date          Time       Description                   Vendor             Amount
+                ----- ------------- ---------- ----------------------------- ------------------ ----------
+                """);
+
+            System.out.printf("%-6d %-13s %-10s %-29s %-18s $%-9.2f%n",
+                    transaction.getTransactionId(),
+                    transaction.getDate(),
+                    transaction.getTime(),
+                    transaction.getDescription(),
+                    transaction.getVendor(),
+                    transaction.getAmount());
     }
 }
