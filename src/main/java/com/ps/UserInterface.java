@@ -82,6 +82,7 @@ public class UserInterface {
         double amount = Math.abs(dataInput.nextDouble());
 
         dao.create(new Transaction(date,time,description,vendor,amount));
+        System.out.println("Transaction has been recorded successfully!");
     }
 
     private static void handleMakePayment() {
@@ -97,6 +98,7 @@ public class UserInterface {
         double amount = -Math.abs(dataInput.nextDouble());
 
         dao.create(new Transaction(date,time,description,vendor,amount));
+        System.out.println("Transaction has been recorded successfully!");
     }
 
     private static void ledgerMenu() {
@@ -126,6 +128,7 @@ public class UserInterface {
                     break;
                 case LIST_DEBITS:
                     handleGetDebits();
+                    break;
             }
         } while (ledgerMenuCommand != 0);
     }
