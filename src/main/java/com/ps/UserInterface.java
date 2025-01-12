@@ -132,8 +132,19 @@ public class UserInterface {
                     break;
                 case SEARCH_BY_ID:
                     handleSearchById();
+                    break;
                 case MONTH_TO_DATE:
                     handleMonthToDate();
+                    break;
+                case PREVIOUS_MONTH:
+                    handlePreviousMonth();
+                    break;
+                case YEAR_TO_DATE:
+                    handleYearToDate();
+                    break;
+                case PREVIOUS_YEAR:
+                    handlePreviousYear();
+                    break;
             }
         } while (ledgerMenuCommand != 0);
     }
@@ -163,7 +174,33 @@ public class UserInterface {
     private static void handleMonthToDate() {
         int month = LocalDate.now().getMonthValue();
         int year = LocalDate.now().getYear();
-        List<Transaction> transactions = dao.getMonthToDate(month, year);
+        List<Transaction> transactions = dao.getByMonth(month, year);
+        printFormattedTable(transactions);
+    }
+
+    private static void handlePreviousMonth() {
+        int month = LocalDate.now().getMonthValue();
+        int year = LocalDate.now().getYear();
+
+        if (month == 1) {
+            month = 12;
+            year -= 1;
+        } else {
+            month -= 1;
+        }
+        List<Transaction> transactions = dao.getByMonth(month, year);
+        printFormattedTable(transactions);
+    }
+
+    private static void handleYearToDate() {
+        int year = LocalDate.now().getYear();
+        List<Transaction> transactions = dao.getByYear(year);
+        printFormattedTable(transactions);
+    }
+
+    private static void handlePreviousYear() {
+        int year = LocalDate.now().getYear() -1;
+        List<Transaction> transactions = dao.getByYear(year);
         printFormattedTable(transactions);
     }
 

@@ -87,10 +87,10 @@ public class TransactionDaoImpl implements TransactionDaoInt {
     }
 
     @Override
-    public List<Transaction> getMonthToDate(int month, int year) {
+    public List<Transaction> getByMonth(int month, int year) {
         List<Transaction> transactions = new ArrayList<>();
         String query = "SELECT * FROM transactions " +
-                       "WHERE MONTH(date) = ? AND YEAR(date) = ?;";
+                       "WHERE MONTH(date) = ? AND YEAR(date) = ?";
         try (
                 Connection connection = dataSource.getConnection();
                 PreparedStatement statement = connection.prepareStatement(query);
@@ -101,6 +101,30 @@ public class TransactionDaoImpl implements TransactionDaoInt {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
+                Transaction transaction = mapTransaction(resultSet);
+                transactions.add(transaction);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return transactions;
+    }
+
+    @Override
+    public List<Transaction> getByYear(int year) {
+        List<Transaction> transactions = new ArrayList<>();
+        String query = "SELECT * FROM transactions " +
+                       "WHERE YEAR(date) = ?";
+        try (
+                Connection connection = dataSource.getConnection();
+                PreparedStatement statement = connection.prepareStatement(query);
+        ) {
+
+            statement.setInt(1, year);
+            ResultSet resultSet = statement.executeQuery();
+
+            while(resultSet.next()) {
                 Transaction transaction = mapTransaction(resultSet);
                 transactions.add(transaction);
             }
