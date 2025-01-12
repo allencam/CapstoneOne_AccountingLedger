@@ -103,6 +103,7 @@ public class UserInterface {
 
     private static void ledgerMenu() {
         int ledgerMenuCommand;
+        commandInput.nextLine();
         do {
             System.out.println("Please select among the following menu options: ");
             for (LedgerMenuOption option : LedgerMenuOption.values()) {
@@ -131,6 +132,8 @@ public class UserInterface {
                     break;
                 case SEARCH_BY_ID:
                     handleSearchById();
+                case MONTH_TO_DATE:
+                    handleMonthToDate();
             }
         } while (ledgerMenuCommand != 0);
     }
@@ -154,8 +157,14 @@ public class UserInterface {
         System.out.print("Enter a transaction ID: ");
         int id = dataInput.nextInt();
         Transaction transaction = dao.getById(id);
-
         printFormattedTable(transaction);
+    }
+
+    private static void handleMonthToDate() {
+        int month = LocalDate.now().getMonthValue();
+        int year = LocalDate.now().getYear();
+        List<Transaction> transactions = dao.getMonthToDate(month, year);
+        printFormattedTable(transactions);
     }
 
     private static void printFormattedTable(List<Transaction> transactions) {
